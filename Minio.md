@@ -18,8 +18,8 @@ Acesso Externo: https://s3.bru.ia.br -> Acesso via internet com certificado SSL,
 
 Para aplicações rodando no **mesmo servidor** (como a Evolution API), a comunicação ocorre pela rede interna do Docker. Nestes casos, a segurança é garantida pelo isolamento da rede, dispensando o overhead de SSL.
 
-### Parâmetros Recomendados (ex: Evolution API, Chatwoot, n8n... mesmo servidor):
-* **S3_ENDPOINT:** `http://minio:9000`
+### Parâmetros Recomendados (ex: Evolution mesmo servidor):
+* **S3_ENDPOINT:** `minio`
 * **S3_PORT:** `9000` (Ajustar de 443 para 9000 ao usar endpoint interno)
 * **S3_USE_SSL:** `false` ⚠️ (Obrigatório para conexões http:// internas)
 
@@ -42,9 +42,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1G    # Teto máximo de RAM
+          memory: 1G    # Teto máximo de RAM - Vai por mim, coloca
         reservations:
-          memory: 512M  # Reserva mínima garantida
+          memory: 512M  # Reserva mínima garantida - Não costumo colocar - opcional
 .
 .
 .
