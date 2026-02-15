@@ -12,34 +12,25 @@ Este repositório contém as diretrizes para implantação do **MinIO (Object St
 
 Para garantir que o serviço não consuma recursos excessivos do servidor, utilizamos limites de hardware via `deploy resources`.
 
-### Docker Compose Recomendado
+### Adicionar Docker Compose Exemplo
 
 ```yaml
 version: '3.8'
 
 services:
   minio:
-    image: quay.io/minio/minio:latest
-    container_name: minio_server
-    command: server /data --console-address ":9001"
-    ports:
-      - "9000:9000" # API S3
-      - "9001:9001" # Console (Visualizador)
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ADMIN_USER}
-      MINIO_ROOT_PASSWORD: ${MINIO_ADMIN_PASSWORD}
-    volumes:
-      - minio_data:/data
+    .
+    .
+    .
     deploy:
       resources:
         limits:
           memory: 1G    # Teto máximo de RAM
         reservations:
           memory: 512M  # Reserva mínima garantida
-    restart: unless-stopped
-
-volumes:
-  minio_data:
+.
+.
+.
 
 ```
 
