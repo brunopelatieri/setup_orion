@@ -16,6 +16,13 @@ Localhost (Aplicação na mesma VPS): http://minio:9000 -> Comunicação interna
 
 Acesso Externo: https://s3.bru.ia.br -> Acesso via internet com certificado SSL, necessário para integrações externas.
 
+Para aplicações rodando no **mesmo servidor** (como a Evolution API), a comunicação ocorre pela rede interna do Docker. Nestes casos, a segurança é garantida pelo isolamento da rede, dispensando o overhead de SSL.
+
+### Parâmetros Recomendados (ex: Evolution API, Chatwoot, n8n... mesmo servidor):
+* **S3_ENDPOINT:** `http://minio:9000`
+* **S3_PORT:** `9000` (Ajustar de 443 para 9000 ao usar endpoint interno)
+* **S3_USE_SSL:** `false` ⚠️ (Obrigatório para conexões http:// internas)
+
 ---
 
 ## 🚀 Configuração de Infraestrutura (Portainer/Docker)
@@ -46,11 +53,20 @@ services:
 
 ---
 
-## 🛠️ Automação via Terminal (SetupOrion `mc`)
+## 🛠️ Automação via Terminal 
 
-Como as novas versões do MinIO Community limitam o gerenciamento via UI, utilizamos o **MinIO Client (`mc`)** para operações administrativas rápidas.
+### Configurar bucket via comando oculto no terminal Setup Orion (mais fácil - recomendado)
 
-### 1. Configurar Conexão (Alias)
+<p align="center">
+  <img src="https://bru.ia.br/001_repo_external/setup_orion_v2_8_minio_comando_oculto_criar_bucket.gif" alt="SetupOrion v2.8 em ação" width="100%">
+</p>
+
+Em: "Digite o NÚMERO da opção desejada ou COMANDO oculto:" -> ESCREVA: minio.bucket
+Siga os passos.
+
+Como as novas versões do MinIO Community limitam o gerenciamento via UI, utilizamos o **MinIO Client (`mc`)** para operações administrativas rápidas. (SetupOrion `mc`)
+
+### 1. Configurar Conexão (Alias) - 
 
 Crie um atalho para o seu servidor local:
 
