@@ -8,6 +8,16 @@ Este repositório contém as diretrizes para implantação do **MinIO (Object St
 
 ---
 
+## 🌐 Qual Endpoint utilizar?
+
+Dependendo de onde sua aplicação está rodando, o endereço de conexão muda:
+
+Localhost (Aplicação na mesma VPS): http://minio:9000 -> Comunicação interna via rede Docker. Mais rápida, segura e sem custos de tráfego externo.
+
+Acesso Externo: https://s3.bru.ia.br -> Acesso via internet com certificado SSL, necessário para integrações externas.
+
+---
+
 ## 🚀 Configuração de Infraestrutura (Portainer/Docker)
 
 Para garantir que o serviço não consuma recursos excessivos do servidor, utilizamos limites de hardware via `deploy resources`.
@@ -73,6 +83,7 @@ mc anonymous set download local/nome-do-bucket
 ```
 > **Dica:** Se precisar migrar dados entre buckets ou servidores, use o comando `mc mirror`. É a forma mais rápida de sincronizar arquivos em alta performance.
 ---
+
 
 ## 📈 Melhores Práticas de Monitoramento
 
